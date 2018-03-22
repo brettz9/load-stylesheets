@@ -9,18 +9,19 @@ if (typeof exports !== 'undefined') {
     require('babel-polyfill');
 }
 
-// We're ont adding to the page anyways, so no need for this now
-// Not working when added to the suite (even with callback):
-//    https://github.com/caolan/nodeunit/issues/212
-/*
 function setUp () {
-    [...document.querySelectorAll('.test')].forEach((el) => el.remove());
+    [...document.querySelectorAll('link')].forEach((el) => {
+        if (!el.href.includes('nodeunit')) el.remove();
+    });
+    // We're not adding to the page anyways, so no need for this now
+    // Not working when added to the suite (even with callback):
+    //    https://github.com/caolan/nodeunit/issues/212
+    // [...document.querySelectorAll('.test')].forEach((el) => el.remove());
 }
-*/
 
 const tests = {
     async 'load-stylesheets' (test) {
-        // setUp();
+        setUp();
         test.expect(6);
 
         const blueRGB = 'rgb(0, 0, 255)';
@@ -40,6 +41,7 @@ const tests = {
             test.strictEqual(s2.nodeName.toLowerCase(), 'link');
             test.strictEqual(s1.getAttribute('href'), stylesheet1);
             test.strictEqual(s2.getAttribute('href'), stylesheet2);
+
             test.strictEqual(computedStyles.color, blueRGB);
             test.strictEqual(computedStyles.backgroundColor, yellowRGB);
             test.done();
@@ -49,11 +51,12 @@ const tests = {
         }
     },
     async 'load-stylesheets single string' (test) {
-        // setUp();
+        setUp();
         test.expect(4);
 
         const blueRGB = 'rgb(0, 0, 255)';
-        const yellowRGB = 'rgb(255, 255, 0)';
+        // const yellowRGB = 'rgb(255, 255, 0)';
+        const noRGB = 'rgba(0, 0, 0, 0)';
         const stylesheet1 = 'styles1.css';
 
         const testElement = document.createElement('div');
@@ -64,10 +67,11 @@ const tests = {
         try {
             const [s1] = await loadStylesheets(stylesheet1);
             const computedStyles = window.getComputedStyle(testElement);
+
             test.strictEqual(s1.nodeName.toLowerCase(), 'link');
             test.strictEqual(s1.getAttribute('href'), stylesheet1);
             test.strictEqual(computedStyles.color, blueRGB);
-            test.strictEqual(computedStyles.backgroundColor, yellowRGB);
+            test.strictEqual(computedStyles.backgroundColor, noRGB);
             test.done();
         } catch (err) {
             test.ok(false, 'Error loading stylesheets');
@@ -75,7 +79,7 @@ const tests = {
         }
     },
     async 'load-stylesheets erring' (test) {
-        // setUp();
+        setUp();
         const stylesheet1 = 'styles1.css';
         const badStylesheet = 'styles-nonexisting.css';
 
@@ -90,6 +94,22 @@ const tests = {
             test.done();
         } catch (err) {
             test.ok(true, 'Erred as expected');
+            test.done();
+        }
+    },
+    async 'favicon' (test) {
+        setUp();
+        test.expect(2);
+
+        const favicon1 = 'favicon.ico';
+
+        try {
+            const [s1] = await loadStylesheets(favicon1, {favicon: true});
+            test.strictEqual(s1.nodeName.toLowerCase(), 'link');
+            test.strictEqual(s1.getAttribute('type'), 'image/x-icon');
+            test.done();
+        } catch (err) {
+            test.ok(false, 'Error loading stylesheets');
             test.done();
         }
     }

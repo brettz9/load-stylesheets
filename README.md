@@ -1,7 +1,7 @@
 # load-stylesheets
 
 Asynchronously load link-tag stylesheets with promise result indicating load
-completion.
+completion. May also be used for favicon-loading.
 
 The advantage over injecting into `<style>` after `fetch` is that with
 `<link>` injection, one gets separate stylesheet documents which don't
@@ -39,6 +39,41 @@ or, using ES6 modules:
 ```
 
 ## API
+
+```
+<Promise> promise = loadStylesheets(<string|Array of string> paths, <object> options?);
+```
+
+- ***paths*** - A string path or array of string paths indicating stylesheets
+    to load
+- ***options*** - An optional object hash with the following optional parameters
+    - ***after*** - A reference element after which the created stylesheet
+        `<link>` will be added. Choose this or `before` or the default which
+            adds to the end of the `<head>`.
+    - ***before*** - A reference element before which the created stylesheet
+        `<link>` will be added. Choose this or `after` or the default which
+            adds to the end of the `<head>`.
+    - ***Favicon options***
+        - *favicon* - A boolean to indicate whether this is a favicon.
+            Otherwise, a stylesheet will be created.
+        - *image* - A boolean (default: true) to indicate whether a favicon
+            is first loaded as an image so as to detect its load event. Since
+            browsers do not seem to report `load` events for favicon links
+            otherwise, keeping this as `true` allows us to know when the image
+            has loaded. If set to `false`, the separate loading as an image is
+            avoided and the favicon promise will resolve immediately as the
+            `<link>` is added to the page regardless of whether it has loaded
+            or not.
+        - *canvas* - This option is used if `image` is set to `true`
+            (default: false). This option will determine whether the image that
+            is loaded is converted into a canvas and loaded as a `data:` URL.
+            If `false`, the image loading will merely serve to detect the point
+            of image load (hopefully with the browser caching the image), but
+            the favicon image file URL will be used as the `<link>` `href`
+            (again, hopefully with the image just cached) rather than any
+            kind of `data:` URL.
+
+## Basic example
 
 ```js
 (async () => {

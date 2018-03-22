@@ -54,8 +54,9 @@ or, using ES6 modules:
         `<link>` will be added. Choose this or `after` or the default which
             adds to the end of the `<head>`.
     - ***Favicon options***
-        - *favicon* - A boolean to indicate whether this is a favicon.
-            Otherwise, a stylesheet will be created.
+        - *favicon* - A boolean to indicate whether this is a favicon. This is
+            only needed if the URL does not end with ".ico". Otherwise, and if
+            this is not true, the URL will be treated as a stylesheet.
         - *image* - A boolean (default: true) to indicate whether a favicon
             is first loaded as an image so as to detect its load event. Since
             browsers do not seem to report `load` events for favicon links

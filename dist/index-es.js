@@ -14,6 +14,9 @@ function loadStylesheets(stylesheets, { before, after, favicon, canvas, image = 
 
         const link = document.createElement('link');
         return new Promise((resolve, reject) => {
+            if (stylesheetURL.endsWith('.ico')) {
+                favicon = true;
+            }
             if (favicon) {
                 link.rel = 'shortcut icon';
                 link.type = 'image/x-icon';

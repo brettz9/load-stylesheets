@@ -1,8 +1,9 @@
 {
   "name": "load-stylesheets",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Asynchronously load link-tag stylesheets with promise result indicating load completion",
-  "main": "dist/index.js",
+  "main": "dist/index-umd.js",
+  "module": "src/index.js",
   "scripts": {
     "rollup": "rollup -c",
     "eslint": "eslint .",

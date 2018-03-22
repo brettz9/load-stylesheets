@@ -14,6 +14,30 @@ but in a modular manner (akin to ES6 Modules but for stylesheets). No
 need for your main HTML to specify the stylesheets the widget is
 using internally.
 
+## Install
+
+### Node install
+
+`npm i load-stylesheets`
+
+or:
+
+`yarn add load-stylesheets`
+
+### Browser install
+
+```html
+<script src="node_modules/load-stylesheets/dist/index-umd.js"></script>
+```
+
+The global will be `loadStylesheets`.
+
+or, using ES6 modules:
+
+```html
+<script type="module" src="node_modules/load-stylesheets/dist/index-es.js"></script>
+```
+
 ## API
 
 ```js

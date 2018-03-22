@@ -9,8 +9,18 @@ if (typeof exports !== 'undefined') {
     require('babel-polyfill');
 }
 
+// We're ont adding to the page anyways, so no need for this now
+// Not working when added to the suite (even with callback):
+//    https://github.com/caolan/nodeunit/issues/212
+/*
+function setUp () {
+    [...document.querySelectorAll('.test')].forEach((el) => el.remove());
+}
+*/
+
 const tests = {
     async 'load-stylesheets' (test) {
+        // setUp();
         test.expect(6);
 
         const blueRGB = 'rgb(0, 0, 255)';
@@ -39,6 +49,7 @@ const tests = {
         }
     },
     async 'load-stylesheets single string' (test) {
+        // setUp();
         test.expect(4);
 
         const blueRGB = 'rgb(0, 0, 255)';
@@ -64,6 +75,7 @@ const tests = {
         }
     },
     async 'load-stylesheets erring' (test) {
+        // setUp();
         const stylesheet1 = 'styles1.css';
         const badStylesheet = 'styles-nonexisting.css';
 

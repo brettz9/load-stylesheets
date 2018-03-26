@@ -41,11 +41,13 @@ or, using ES6 modules:
 ## API
 
 ```
-<Promise> promise = loadStylesheets(<string|Array of string> paths, <object> options?);
+<Promise> promise = loadStylesheets(<string|Array of strings and/or two-item arrays of path and options> paths, <object> options?);
 ```
 
 - ***paths*** - A string path or array of string paths indicating stylesheets
-    to load
+    to load. In place of string paths, one may add a two-item array of a
+    stylesheet path and options which override the main `loadStylesheets` options
+    on a case-by-case basis
 - ***options*** - An optional object hash with the following optional parameters
     - ***after*** - A reference element after which the created stylesheet
         `<link>` will be added. Choose this or `before` or the default which
@@ -74,7 +76,7 @@ or, using ES6 modules:
             (again, hopefully with the image just cached) rather than any
             kind of `data:` URL.
 
-## Basic example
+## Example (basic)
 
 ```js
 (async () => {
@@ -82,6 +84,18 @@ const stylesheetElements = await loadStylesheets([
     'path/to/styles.css',
     'a/different/path/to/styles.css'
 ]);
+})();
+```
+
+## Example (with config)
+
+```js
+(async () => {
+const stylesheetElements = await loadStylesheets([
+    'path/to/styles.css',
+    ['path/to/favicon.png', {favicon: true, before: document.head}],
+    'a/different/path/to/styles.css'
+], {before: document.body.lastElementChild});
 })();
 ```
 

@@ -104,9 +104,43 @@ const tests = {
         const favicon1 = 'favicon.ico';
 
         try {
-            const [s1] = await loadStylesheets(favicon1, {favicon: true});
+            const [f1] = await loadStylesheets(favicon1, {favicon: true});
+            test.strictEqual(f1.nodeName.toLowerCase(), 'link');
+            test.strictEqual(f1.getAttribute('type'), 'image/x-icon');
+            test.done();
+        } catch (err) {
+            test.ok(false, 'Error loading stylesheets');
+            test.done();
+        }
+    },
+    async 'favicon and stylesheets' (test) {
+        setUp();
+        test.expect(6);
+
+        const favicon1 = 'favicon.ico';
+        const blueRGB = 'rgb(0, 0, 255)';
+        // const yellowRGB = 'rgb(255, 255, 0)';
+        const noRGB = 'rgba(0, 0, 0, 0)';
+        const stylesheet1 = 'styles1.css';
+
+        const testElement = document.createElement('div');
+        testElement.className = 'test';
+        testElement.append('testing...');
+        // document.body.append(testElement);
+
+        try {
+            const [s1, f1] = await loadStylesheets([
+                stylesheet1,
+                [favicon1, {favicon: true}]
+            ]);
+            const computedStyles = window.getComputedStyle(testElement);
             test.strictEqual(s1.nodeName.toLowerCase(), 'link');
-            test.strictEqual(s1.getAttribute('type'), 'image/x-icon');
+            test.strictEqual(s1.getAttribute('href'), stylesheet1);
+            test.strictEqual(computedStyles.color, blueRGB);
+            test.strictEqual(computedStyles.backgroundColor, noRGB);
+
+            test.strictEqual(f1.nodeName.toLowerCase(), 'link');
+            test.strictEqual(f1.getAttribute('type'), 'image/x-icon');
             test.done();
         } catch (err) {
             test.ok(false, 'Error loading stylesheets');

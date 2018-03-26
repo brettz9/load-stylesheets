@@ -1,5 +1,13 @@
 # load-stylesheets
 
+## 0.4.0
+
+- Enhancement: Allow overriding of defaults by supplying two-item array
+    (stylesheet and options) within array
+- Enhancement: Avoid treating ".css" as favicon even if `favicon` config
+    set to true
+- LICENSE: Add missing license copy (MIT)
+
 ## 0.3.0
 
 - Enhancement: Avoid need for `favicon: true` option if URL ends with `.ico`.

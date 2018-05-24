@@ -19,11 +19,14 @@
     "stylesheet"
   ],
   "author": "Brett Zamir",
+  "contributors": [],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/brettz9/load-stylesheets/issues"
   },
   "homepage": "https://github.com/brettz9/load-stylesheets#readme",
+  "dependencies": {},
+  "engines": {},
   "devDependencies": {
     "babel-core": "6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",

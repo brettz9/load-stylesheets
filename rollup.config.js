@@ -7,6 +7,7 @@ function getRollupObject ({minifying, format = 'umd'} = {}) {
         input: 'src/index.js',
         output: {
             format,
+            sourcemap: minifying,
             file: `dist/index-${format}${minifying ? '.min' : ''}.js`,
             name: 'loadStylesheets'
         },

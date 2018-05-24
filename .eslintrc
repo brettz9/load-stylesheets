@@ -23,6 +23,8 @@
     "object-property-newline": 0,
     "one-var": 0,
     "no-var": 2,
-    "prefer-const": 2
+    "prefer-const": 2,
+    "no-extra-semi": 2,
+    "quote-props": [2, "as-needed"]
   }
 }

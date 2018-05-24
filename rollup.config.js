@@ -18,7 +18,7 @@ function getRollupObject ({minifying, format = 'umd'} = {}) {
         nonMinified.plugins.push(uglify(null, minify));
     }
     return nonMinified;
-};
+}
 
 export default [
     getRollupObject(),

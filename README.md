@@ -34,8 +34,8 @@ The global will be `loadStylesheets`.
 
 or, using ES6 modules:
 
-```html
-<script type="module" src="node_modules/load-stylesheets/dist/index-es.js"></script>
+```js
+import loadStylesheets from './node_modules/load-stylesheets/dist/index-es.js';
 ```
 
 ## API

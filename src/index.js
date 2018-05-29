@@ -1,6 +1,7 @@
 export default function loadStylesheets (stylesheets, {
     before: beforeDefault, after: afterDefault, favicon: faviconDefault,
-    canvas: canvasDefault, image: imageDefault = true
+    canvas: canvasDefault, image: imageDefault = true,
+    acceptErrors
 } = {}) {
     stylesheets = Array.isArray(stylesheets) ? stylesheets : [stylesheets];
 
@@ -28,6 +29,13 @@ export default function loadStylesheets (stylesheets, {
 
         const link = document.createElement('link');
         return new Promise((resolve, reject) => {
+            if (acceptErrors) {
+                reject = typeof acceptErrors === 'function'
+                    ? (error) => {
+                        acceptErrors({error, stylesheetURL, options, resolve, reject});
+                    }
+                    : resolve;
+            }
             if (stylesheetURL.endsWith('.css')) {
                 favicon = false;
             } else if (stylesheetURL.endsWith('.ico')) {

@@ -1,5 +1,9 @@
 # load-stylesheets
 
+## 0.5.0
+
+- Enhancement: `acceptErrors` boolean or callback
+
 ## 0.4.0
 
 - Enhancement: Allow overriding of defaults by supplying two-item array

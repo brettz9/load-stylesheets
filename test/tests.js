@@ -80,6 +80,7 @@ const tests = {
     },
     async 'load-stylesheets erring' (test) {
         setUp();
+        test.expect(1);
         const stylesheet1 = 'styles1.css';
         const badStylesheet = 'styles-nonexisting.css';
 
@@ -94,6 +95,54 @@ const tests = {
             test.done();
         } catch (err) {
             test.ok(true, 'Erred as expected');
+            test.done();
+        }
+    },
+    async 'load-stylesheets erring (ignoring option)' (test) {
+        setUp();
+        test.expect(1);
+        const stylesheet1 = 'styles1.css';
+        const badStylesheet = 'styles-nonexisting.css';
+
+        const testElement = document.createElement('div');
+        testElement.className = 'test';
+        testElement.append('testing...');
+        // document.body.append(testElement);
+
+        try {
+            await loadStylesheets([stylesheet1, badStylesheet], {acceptErrors: true});
+            test.ok(true, 'Should ignore errors after loading bad stylesheet');
+            test.done();
+        } catch (err) {
+            test.ok(false, 'Should not have erred');
+            test.done();
+        }
+    },
+    async 'load-stylesheets erring (ignoring callback)' (test) {
+        setUp();
+        test.expect(2);
+        const stylesheet1 = 'styles1.css';
+        const badStylesheet = 'styles-nonexisting.css';
+
+        const testElement = document.createElement('div');
+        testElement.className = 'test';
+        testElement.append('testing...');
+        // document.body.append(testElement);
+
+        try {
+            await loadStylesheets([stylesheet1, badStylesheet], {
+                acceptErrors: ({stylesheetURL, options, resolve, reject}) => {
+                    test.ok(
+                        stylesheetURL === badStylesheet,
+                        'Should report bad stylesheet to callback; found: ' + stylesheetURL
+                    );
+                    resolve();
+                }
+            });
+            test.ok(true, 'Should ignore errors after loading bad stylesheet');
+            test.done();
+        } catch (err) {
+            test.ok(false, 'Should not have erred');
             test.done();
         }
     },

@@ -161,3 +161,7 @@ be as clean as:
     </body>
 </html>
 ```
+
+## Credits
+
+Inspiration drawn from [fetch-inject](https://github.com/jhabdas/fetch-inject) and [dynamic-import-polyfill](https://github.com/uupaa/dynamic-import-polyfill).

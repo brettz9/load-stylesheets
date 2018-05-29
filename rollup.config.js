@@ -9,7 +9,7 @@ function getRollupObject ({minifying, format = 'umd'} = {}) {
             format,
             sourcemap: minifying,
             file: `dist/index-${format}${minifying ? '.min' : ''}.js`,
-            name: 'loadStylesheets'
+            name: 'Loader'
         },
         plugins: [
             babel()

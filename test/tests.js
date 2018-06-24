@@ -1,28 +1,31 @@
-/* eslint-env node */
-/* exported tests */
+/* eslint-env mocha, node */
 /* globals loadStylesheets */
 
+// import loadStylesheets from '../dist/index-es.js';
+
+var chai; // eslint-disable-line no-var
 (function () {
 'use strict';
 
 if (typeof exports !== 'undefined') {
     require('babel-polyfill');
+    chai = require('chai');
 }
+
+mocha.setup('bdd');
+
+const {assert, expect} = chai;
 
 function setUp () {
     [...document.querySelectorAll('link')].forEach((el) => {
-        if (!el.href.includes('nodeunit')) el.remove();
+        if (!el.href.includes('mocha')) el.remove();
     });
-    // We're not adding to the page anyways, so no need for this now
-    // Not working when added to the suite (even with callback):
-    //    https://github.com/caolan/nodeunit/issues/212
-    // [...document.querySelectorAll('.test')].forEach((el) => el.remove());
 }
 
-const tests = {
-    async 'load-stylesheets' (test) {
+describe('load-stylesheets', function () {
+    it('load-stylesheets', async () => {
         setUp();
-        test.expect(6);
+        expect(6);
 
         const blueRGB = 'rgb(0, 0, 255)';
         const yellowRGB = 'rgb(255, 255, 0)';
@@ -37,22 +40,20 @@ const tests = {
         try {
             const [s1, s2] = await loadStylesheets([stylesheet1, stylesheet2]);
             const computedStyles = window.getComputedStyle(testElement);
-            test.strictEqual(s1.nodeName.toLowerCase(), 'link');
-            test.strictEqual(s2.nodeName.toLowerCase(), 'link');
-            test.strictEqual(s1.getAttribute('href'), stylesheet1);
-            test.strictEqual(s2.getAttribute('href'), stylesheet2);
+            expect(s1.nodeName.toLowerCase()).equal('link');
+            assert.strictEqual(s2.nodeName.toLowerCase(), 'link');
+            assert.strictEqual(s1.getAttribute('href'), stylesheet1);
+            assert.strictEqual(s2.getAttribute('href'), stylesheet2);
 
-            test.strictEqual(computedStyles.color, blueRGB);
-            test.strictEqual(computedStyles.backgroundColor, yellowRGB);
-            test.done();
+            assert.strictEqual(computedStyles.color, blueRGB);
+            assert.strictEqual(computedStyles.backgroundColor, yellowRGB);
         } catch (err) {
-            test.ok(false, 'Error loading stylesheets');
-            test.done();
+            assert.ok(false, 'Error loading stylesheets');
         }
-    },
-    async 'load-stylesheets single string' (test) {
+    });
+    it('load-stylesheets single string', async () => {
         setUp();
-        test.expect(4);
+        expect(4);
 
         const blueRGB = 'rgb(0, 0, 255)';
         // const yellowRGB = 'rgb(255, 255, 0)';
@@ -68,19 +69,17 @@ const tests = {
             const [s1] = await loadStylesheets(stylesheet1);
             const computedStyles = window.getComputedStyle(testElement);
 
-            test.strictEqual(s1.nodeName.toLowerCase(), 'link');
-            test.strictEqual(s1.getAttribute('href'), stylesheet1);
-            test.strictEqual(computedStyles.color, blueRGB);
-            test.strictEqual(computedStyles.backgroundColor, noRGB);
-            test.done();
+            assert.strictEqual(s1.nodeName.toLowerCase(), 'link');
+            assert.strictEqual(s1.getAttribute('href'), stylesheet1);
+            assert.strictEqual(computedStyles.color, blueRGB);
+            assert.strictEqual(computedStyles.backgroundColor, noRGB);
         } catch (err) {
-            test.ok(false, 'Error loading stylesheets');
-            test.done();
+            assert.ok(false, 'Error loading stylesheets');
         }
-    },
-    async 'load-stylesheets erring' (test) {
+    });
+    it('load-stylesheets erring', async () => {
         setUp();
-        test.expect(1);
+        expect(1);
         const stylesheet1 = 'styles1.css';
         const badStylesheet = 'styles-nonexisting.css';
 
@@ -91,16 +90,14 @@ const tests = {
 
         try {
             await loadStylesheets([stylesheet1, badStylesheet]);
-            test.ok(false, 'Should have been an error after loading bad stylesheet');
-            test.done();
+            assert.ok(false, 'Should have been an error after loading bad stylesheet');
         } catch (err) {
-            test.ok(true, 'Erred as expected');
-            test.done();
+            assert.ok(true, 'Erred as expected');
         }
-    },
-    async 'load-stylesheets erring (ignoring option)' (test) {
+    });
+    it('load-stylesheets erring (ignoring option)', async () => {
         setUp();
-        test.expect(1);
+        expect(1);
         const stylesheet1 = 'styles1.css';
         const badStylesheet = 'styles-nonexisting.css';
 
@@ -111,16 +108,14 @@ const tests = {
 
         try {
             await loadStylesheets([stylesheet1, badStylesheet], {acceptErrors: true});
-            test.ok(true, 'Should ignore errors after loading bad stylesheet');
-            test.done();
+            assert.ok(true, 'Should ignore errors after loading bad stylesheet');
         } catch (err) {
-            test.ok(false, 'Should not have erred');
-            test.done();
+            assert.ok(false, 'Should not have erred');
         }
-    },
-    async 'load-stylesheets erring (ignoring callback)' (test) {
+    });
+    it('load-stylesheets erring (ignoring callback)', async () => {
         setUp();
-        test.expect(2);
+        expect(2);
         const stylesheet1 = 'styles1.css';
         const badStylesheet = 'styles-nonexisting.css';
 
@@ -132,39 +127,35 @@ const tests = {
         try {
             await loadStylesheets([stylesheet1, badStylesheet], {
                 acceptErrors: ({stylesheetURL, options, resolve, reject}) => {
-                    test.ok(
+                    assert.ok(
                         stylesheetURL === badStylesheet,
                         'Should report bad stylesheet to callback; found: ' + stylesheetURL
                     );
                     resolve();
                 }
             });
-            test.ok(true, 'Should ignore errors after loading bad stylesheet');
-            test.done();
+            assert.ok(true, 'Should ignore errors after loading bad stylesheet');
         } catch (err) {
-            test.ok(false, 'Should not have erred');
-            test.done();
+            assert.ok(false, 'Should not have erred');
         }
-    },
-    async 'favicon' (test) {
+    });
+    it('favicon', async () => {
         setUp();
-        test.expect(2);
+        expect(2);
 
         const favicon1 = 'favicon.ico';
 
         try {
             const [f1] = await loadStylesheets(favicon1, {favicon: true});
-            test.strictEqual(f1.nodeName.toLowerCase(), 'link');
-            test.strictEqual(f1.getAttribute('type'), 'image/x-icon');
-            test.done();
+            assert.strictEqual(f1.nodeName.toLowerCase(), 'link');
+            assert.strictEqual(f1.getAttribute('type'), 'image/x-icon');
         } catch (err) {
-            test.ok(false, 'Error loading stylesheets');
-            test.done();
+            assert.ok(false, 'Error loading stylesheets');
         }
-    },
-    async 'favicon and stylesheets' (test) {
+    });
+    it('favicon and stylesheets', async () => {
         setUp();
-        test.expect(6);
+        expect(6);
 
         const favicon1 = 'favicon.ico';
         const blueRGB = 'rgb(0, 0, 255)';
@@ -183,24 +174,18 @@ const tests = {
                 [favicon1, {favicon: true}]
             ]);
             const computedStyles = window.getComputedStyle(testElement);
-            test.strictEqual(s1.nodeName.toLowerCase(), 'link');
-            test.strictEqual(s1.getAttribute('href'), stylesheet1);
-            test.strictEqual(computedStyles.color, blueRGB);
-            test.strictEqual(computedStyles.backgroundColor, noRGB);
+            assert.strictEqual(s1.nodeName.toLowerCase(), 'link');
+            assert.strictEqual(s1.getAttribute('href'), stylesheet1);
+            assert.strictEqual(computedStyles.color, blueRGB);
+            assert.strictEqual(computedStyles.backgroundColor, noRGB);
 
-            test.strictEqual(f1.nodeName.toLowerCase(), 'link');
-            test.strictEqual(f1.getAttribute('type'), 'image/x-icon');
-            test.done();
+            assert.strictEqual(f1.nodeName.toLowerCase(), 'link');
+            assert.strictEqual(f1.getAttribute('type'), 'image/x-icon');
         } catch (err) {
-            test.ok(false, 'Error loading stylesheets');
-            test.done();
+            assert.ok(false, 'Error loading stylesheets');
         }
-    }
-};
-
-if (typeof exports !== 'undefined') {
-    module.exports = tests;
-} else {
-    window.tests = tests;
-}
+    });
+});
 }());
+
+mocha.run();

@@ -1,5 +1,11 @@
 # load-stylesheets
 
+## 0.6.0
+
+- npm: Update devDeps; do security audit fix
+- Docs: Mention `fetch-inject`
+- Testing: Switch from deprecated nodeunit to Mocha/Chai; also add puppeteer
+
 ## 0.5.0
 
 - Enhancement: `acceptErrors` boolean or callback

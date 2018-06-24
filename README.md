@@ -6,7 +6,7 @@ completion. May also be used for favicon-loading.
 The advantage over injecting into `<style>` after `fetch` is that with
 `<link>` injection, one gets separate stylesheet documents which don't
 clutter the source and which can be viewed as separate documents in
-the web console.
+the web console. Loading also appears to occur more quickly.
 
 Useful for code libraries which allowing for parallel loading of stylesheets
 (including optionally user-supplied one(s)) related to that widget/library
@@ -161,3 +161,7 @@ be as clean as:
     </body>
 </html>
 ```
+
+## Related libraries
+
+- [fetch-inject](https://github.com/jhabdas/fetch-inject) - Inserts `<style>` tags (and also `<script>`)

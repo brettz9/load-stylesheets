@@ -1,5 +1,9 @@
 # load-stylesheets
 
+## 0.6.1
+
+- Fix: Avoid bundling hidden cache and mocha-puppeteer files
+
 ## 0.6.0
 
 - npm: Update devDeps; do security audit fix

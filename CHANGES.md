@@ -1,5 +1,10 @@
 # load-stylesheets
 
+## 0.7.0
+
+- Fix: Avoid possible recursion with `acceptErrors`
+- npm: Update devDeps
+
 ## 0.6.1
 
 - Fix: Avoid bundling hidden cache and mocha-puppeteer files

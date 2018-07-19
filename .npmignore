@@ -2,3 +2,7 @@ test
 
 .cache
 .mocha-puppeteer
+.babelrc
+.eslintignore
+.eslintrc
+.remarkrc

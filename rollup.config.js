@@ -1,6 +1,5 @@
 import babel from 'rollup-plugin-babel';
-import {uglify} from 'rollup-plugin-uglify';
-import {minify} from 'uglify-es';
+import {terser} from 'rollup-plugin-terser';
 
 function getRollupObject ({minifying, format = 'umd'} = {}) {
     const nonMinified = {
@@ -16,7 +15,7 @@ function getRollupObject ({minifying, format = 'umd'} = {}) {
         ]
     };
     if (minifying) {
-        nonMinified.plugins.push(uglify(null, minify));
+        nonMinified.plugins.push(terser());
     }
     return nonMinified;
 }

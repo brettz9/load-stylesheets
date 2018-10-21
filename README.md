@@ -1,5 +1,12 @@
 # load-stylesheets
 
+[![Dependencies](https://img.shields.io/david/brettz9/load-stylesheets.svg)](https://david-dm.org/brettz9/load-stylesheets)
+[![devDependencies](https://img.shields.io/david/dev/brettz9/load-stylesheets.svg)](https://david-dm.org/brettz9/load-stylesheets?type=dev)
+[![npm](http://img.shields.io/npm/v/load-stylesheets.svg)](https://www.npmjs.com/package/load-stylesheets)
+[![License](https://img.shields.io/npm/l/load-stylesheets.svg)](LICENSE-MIT)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/brettz9/load-stylesheets.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/brettz9/load-stylesheets/context:javascript)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/brettz9/load-stylesheets.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/brettz9/load-stylesheets/alerts/)
+
 Asynchronously load link-tag stylesheets with promise result indicating load
 completion. May also be used for favicon-loading.
 

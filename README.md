@@ -171,4 +171,4 @@ be as clean as:
 
 ## Related libraries
 
-- [fetch-inject](https://github.com/jhabdas/fetch-inject) - Inserts `<style>` tags (and also `<script>`)
+- [fetch-inject](https://git.habd.as/jhabdas/fetch-inject) - Inserts `<style>` tags (and also `<script>`)

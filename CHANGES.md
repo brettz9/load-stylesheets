@@ -2,12 +2,18 @@
 
 ## 0.8.0
 
-- Linting: Change to avoid deprecated `.eslintrc` without extension
+- Linting (ESLint): Change to avoid deprecated `.eslintrc` without extension
     (add `.js`)
+- Linting (ESLint): Override new "standard" rule
+- Linting (LGTM): Add `lgtm.yml`
 - npm: Add `core-js-bundle` to peerDependencies and remove `@babel/polyfill`
     devDep in favor of it
 - npm: Update opn->open-cli
 - npm: Update devDeps; add mocha
+- npm: Add to `.npmignore`
+- npm: Update devDeps including Babel to 7; remove mocha-puppeteer and
+    unneeded rollup plugins; move from uglify to terser
+- Docs: Add npm, license, lgtm info; update README (@jhabdas)
 
 ## 0.7.0
 

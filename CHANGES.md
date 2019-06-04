@@ -1,5 +1,14 @@
 # load-stylesheets
 
+## 0.8.0
+
+- Linting: Change to avoid deprecated `.eslintrc` without extension
+    (add `.js`)
+- npm: Add `core-js-bundle` to peerDependencies and remove `@babel/polyfill`
+    devDep in favor of it
+- npm: Update opn->open-cli
+- npm: Update devDeps; add mocha
+
 ## 0.7.0
 
 - Fix: Avoid possible recursion with `acceptErrors`

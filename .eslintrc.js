@@ -1,16 +1,13 @@
-{
+module.exports = {
   "extends": "standard",
   "parserOptions": {
       "sourceType": "module"
   },
   "plugins": ["compat"],
   "settings": {
-    "targets": [
-        "chrome", "firefox", "edge", "safari", "ios_saf", "android",
-        "opera", "ie", "op_mini", "bb", "op_mob", "and_chr",
-        "and_ff", "ie_mob", "and_uc", "samsung"
+    "polyfills": [
+
     ],
-    "polyfills": [],
     "coverage": true
   },
   "env": {
@@ -28,4 +25,4 @@
     "quote-props": [2, "as-needed"],
     "object-curly-spacing": ["error", "never"]
   }
-}
+};

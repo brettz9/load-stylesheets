@@ -1,8 +1,8 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.loadStylesheets = factory());
-}(this, (function () { 'use strict';
+  (global = global || self, global.loadStylesheets = factory());
+}(this, function () { 'use strict';
 
   function _slicedToArray(arr, i) {
     return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
@@ -159,4 +159,4 @@
 
   return loadStylesheets;
 
-})));
+}));

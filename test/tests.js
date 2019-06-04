@@ -8,7 +8,7 @@ var chai; // eslint-disable-line no-var
 'use strict';
 
 if (typeof exports !== 'undefined') {
-    require('@babel/polyfill');
+    require('core-js-bundle');
     chai = require('chai');
 }
 

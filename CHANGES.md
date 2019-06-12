@@ -1,5 +1,10 @@
 # load-stylesheets
 
+## ?
+
+- Linting: Switch to ash-nazg; lint markdown
+- npm: Update devDeps
+
 ## 0.8.0
 
 - Linting (ESLint): Change to avoid deprecated `.eslintrc` without extension

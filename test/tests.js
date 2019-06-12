@@ -1,12 +1,12 @@
 /* eslint-env mocha, node */
-/* globals loadStylesheets */
+/* globals loadStylesheets, require */
+/* eslint-disable strict, import/unambiguous, global-require */
 
 // import loadStylesheets from '../dist/index-es.js';
+'use strict';
 
 var chai; // eslint-disable-line no-var
 (function () {
-'use strict';
-
 if (typeof exports !== 'undefined') {
     require('core-js-bundle');
     chai = require('chai');
@@ -16,6 +16,9 @@ mocha.setup('bdd');
 
 const {assert, expect} = chai;
 
+/**
+ * @returns {void}
+ */
 function setUp () {
     [...document.querySelectorAll('link')].forEach((el) => {
         if (!el.href.includes('mocha')) el.remove();
@@ -90,7 +93,9 @@ describe('load-stylesheets', function () {
 
         try {
             await loadStylesheets([stylesheet1, badStylesheet]);
-            assert.ok(false, 'Should have been an error after loading bad stylesheet');
+            assert.ok(
+                false, 'Should have been an error after loading bad stylesheet'
+            );
         } catch (err) {
             assert.ok(true, 'Erred as expected');
         }
@@ -107,8 +112,12 @@ describe('load-stylesheets', function () {
         // document.body.append(testElement);
 
         try {
-            await loadStylesheets([stylesheet1, badStylesheet], {acceptErrors: true});
-            assert.ok(true, 'Should ignore errors after loading bad stylesheet');
+            await loadStylesheets([stylesheet1, badStylesheet], {
+                acceptErrors: true
+            });
+            assert.ok(
+                true, 'Should ignore errors after loading bad stylesheet'
+            );
         } catch (err) {
             assert.ok(false, 'Should not have erred');
         }
@@ -126,15 +135,18 @@ describe('load-stylesheets', function () {
 
         try {
             await loadStylesheets([stylesheet1, badStylesheet], {
-                acceptErrors: ({stylesheetURL, options, resolve, reject}) => {
+                acceptErrors ({stylesheetURL, options, resolve, reject}) {
                     assert.ok(
                         stylesheetURL === badStylesheet,
-                        'Should report bad stylesheet to callback; found: ' + stylesheetURL
+                        'Should report bad stylesheet to callback; found: ' +
+                          stylesheetURL
                     );
                     resolve();
                 }
             });
-            assert.ok(true, 'Should ignore errors after loading bad stylesheet');
+            assert.ok(
+                true, 'Should ignore errors after loading bad stylesheet'
+            );
         } catch (err) {
             assert.ok(false, 'Should not have erred');
         }

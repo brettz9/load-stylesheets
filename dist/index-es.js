@@ -80,11 +80,13 @@ function loadStylesheets(stylesheets) {
       } else if (after) {
         after.after(link);
       } else {
+        // eslint-disable-next-line unicorn/prefer-node-append
         document.head.appendChild(link);
       }
     }
 
-    var link = document.createElement('link');
+    var link = document.createElement('link'); // eslint-disable-next-line promise/avoid-new
+
     return new Promise(function (resolve, reject) {
       var rej = reject;
 
@@ -148,7 +150,9 @@ function loadStylesheets(stylesheets) {
     });
   }
 
-  return Promise.all(stylesheets.map(setupLink));
+  return Promise.all(stylesheets.map(function (stylesheetURL) {
+    return setupLink(stylesheetURL);
+  }));
 }
 
 export default loadStylesheets;

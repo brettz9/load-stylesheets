@@ -1,12 +1,15 @@
 module.exports = {
-  "extends": "standard",
+  "extends": "ash-nazg/sauron-node",
   "parserOptions": {
       "sourceType": "module"
   },
-  "plugins": ["compat"],
   "settings": {
     "polyfills": [
-
+      "Array.isArray",
+      "document.head",
+      "document.querySelectorAll",
+      "Promise",
+      "window.getComputedStyle"
     ],
     "coverage": true
   },
@@ -14,15 +17,33 @@ module.exports = {
       "node": false,
       "browser": true
   },
+  "overrides": [
+    {
+      files: ["**/*.md"],
+      settings: {
+        polyfills: [
+          "document.body"
+        ]
+      },
+      rules: {
+        "eol-last": ["off"],
+        "no-console": ["off"],
+        "no-undef": ["off"],
+        "no-unused-vars": ["warn"],
+        "padded-blocks": ["off"],
+        "import/unambiguous": ["off"],
+        "import/no-unresolved": ["off"],
+        "node/no-missing-import": ["off"],
+        "no-multi-spaces": "off",
+        "no-unused-vars": ["error", {varsIgnorePattern: "^(loadStylesheets|stylesheetElements|widget)$"}],
+        // Disable until may fix https://github.com/gajus/eslint-plugin-jsdoc/issues/211
+        "indent": "off"
+      }
+    }
+  ],
   "rules": {
-    "semi": [2, "always"],
     "indent": ["error", 4, {"outerIIFEBody": 0}],
-    "object-property-newline": 0,
-    "one-var": 0,
-    "no-var": 2,
-    "prefer-const": 2,
-    "no-extra-semi": 2,
-    "quote-props": [2, "as-needed"],
-    "object-curly-spacing": ["error", "never"]
+    // Todo: Reenable
+    "jsdoc/require-jsdoc": 0
   }
 };

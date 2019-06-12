@@ -23,17 +23,22 @@ export default function loadStylesheets (stylesheets, {
             } else if (after) {
                 after.after(link);
             } else {
+                // eslint-disable-next-line unicorn/prefer-node-append
                 document.head.appendChild(link);
             }
         }
 
         const link = document.createElement('link');
+
+        // eslint-disable-next-line promise/avoid-new
         return new Promise((resolve, reject) => {
             let rej = reject;
             if (acceptErrors) {
                 rej = typeof acceptErrors === 'function'
                     ? (error) => {
-                        acceptErrors({error, stylesheetURL, options, resolve, reject});
+                        acceptErrors({
+                            error, stylesheetURL, options, resolve, reject
+                        });
                     }
                     : resolve;
             }
@@ -86,6 +91,6 @@ export default function loadStylesheets (stylesheets, {
     }
 
     return Promise.all(
-        stylesheets.map(setupLink)
+        stylesheets.map((stylesheetURL) => setupLink(stylesheetURL))
     );
 }

@@ -6,3 +6,5 @@ test
 .eslintignore
 .eslintrc
 .remarkrc
+
+rollup.config.js

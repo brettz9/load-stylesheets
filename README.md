@@ -115,7 +115,8 @@ to allow for an API such as:
 // main.js
 import Widget from './widget.js';
 
-document.title = 'Internationalizable title'; // We even do the title in JavaScript
+// We even do the title in JavaScript
+document.title = 'Internationalizable title';
 
 (async () => {
 
@@ -131,6 +132,7 @@ const widget = await new Widget({
 ```js
 // widget.js
 import loadStylesheets from 'load-stylesheets';
+
 class Widget {
     constructor ({stylesheets}) {
         // We'll allow control in one place of whether the user wants the

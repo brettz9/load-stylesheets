@@ -1,6 +1,6 @@
 # load-stylesheets
 
-## ?
+## 0.9.0
 
 - Linting: Switch to ash-nazg; lint markdown; fix in eslintrc
 - Testing: Add favicon no-op

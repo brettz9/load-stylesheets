@@ -29,7 +29,6 @@ module.exports = {
         "eol-last": ["off"],
         "no-console": ["off"],
         "no-undef": ["off"],
-        "no-unused-vars": ["warn"],
         "padded-blocks": ["off"],
         "import/unambiguous": ["off"],
         "import/no-unresolved": ["off"],

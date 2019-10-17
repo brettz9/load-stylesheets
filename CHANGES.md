@@ -2,8 +2,9 @@
 
 ## ?
 
-- Linting: Switch to ash-nazg; lint markdown
-- npm: Update devDeps
+- Linting: Switch to ash-nazg; lint markdown; fix in eslintrc
+- Testing: Add favicon no-op
+- npm: Update devDeps; remote peerDep
 
 ## 0.8.0
 

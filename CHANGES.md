@@ -1,5 +1,10 @@
 # load-stylesheets
 
+## ?
+
+- Linting (ESLint): Apply to any HTML files
+- npm: update peerDep/devDeps
+
 ## 0.9.0
 
 - Linting: Switch to ash-nazg; lint markdown; fix in eslintrc

@@ -1,7 +1,7 @@
 module.exports = {
   "extends": "ash-nazg/sauron-node",
   "parserOptions": {
-      "sourceType": "module"
+    "sourceType": "module"
   },
   "settings": {
     "polyfills": [
@@ -14,8 +14,8 @@ module.exports = {
     "coverage": true
   },
   "env": {
-      "node": false,
-      "browser": true
+    "node": false,
+    "browser": true
   },
   "overrides": [
     {
@@ -41,7 +41,6 @@ module.exports = {
     }
   ],
   "rules": {
-    "indent": ["error", 4, {"outerIIFEBody": 0}],
     // Todo: Reenable
     "jsdoc/require-jsdoc": 0
   }

@@ -3,6 +3,7 @@
 ## ?
 
 - Linting (ESLint): Apply to any HTML files
+- Maintenance: Add `.editorconfig`
 - npm: update peerDep/devDeps
 
 ## 0.9.0

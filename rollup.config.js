@@ -14,28 +14,28 @@ import {terser} from 'rollup-plugin-terser';
  * @returns {external:RollupConfig}
  */
 function getRollupObject ({minifying, format = 'umd'} = {}) {
-    const nonMinified = {
-        input: 'src/index.js',
-        output: {
-            format,
-            sourcemap: minifying,
-            file: `dist/index-${format}${minifying ? '.min' : ''}.js`,
-            name: 'loadStylesheets'
-        },
-        plugins: [
-            babel()
-        ]
-    };
-    if (minifying) {
-        nonMinified.plugins.push(terser());
-    }
-    return nonMinified;
+  const nonMinified = {
+    input: 'src/index.js',
+    output: {
+      format,
+      sourcemap: minifying,
+      file: `dist/index-${format}${minifying ? '.min' : ''}.js`,
+      name: 'loadStylesheets'
+    },
+    plugins: [
+      babel()
+    ]
+  };
+  if (minifying) {
+    nonMinified.plugins.push(terser());
+  }
+  return nonMinified;
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
-    getRollupObject(),
-    getRollupObject({minifying: true}),
-    getRollupObject({minifying: true, format: 'es'}),
-    getRollupObject({minifying: false, format: 'es'})
+  getRollupObject(),
+  getRollupObject({minifying: true}),
+  getRollupObject({minifying: true, format: 'es'}),
+  getRollupObject({minifying: false, format: 'es'})
 ];

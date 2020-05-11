@@ -2,8 +2,13 @@
 
 ## ?
 
+- Build: Update per latest devDeps.
+- Build: Use "json" extension for RC
 - Linting (ESLint): Apply to any HTML files
+- Linting: As per latest ash-nazg / ESLint 7
 - Maintenance: Add `.editorconfig`
+- npm: Update `rollup-plugin-babel` to `@rollup/plugin-babel`
+    and make explicit `babelHelpers` value of `bundled`
 - npm: update peerDep/devDeps
 
 ## 0.9.0

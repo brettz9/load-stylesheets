@@ -1,6 +1,6 @@
 /* eslint-env mocha, node */
 /* globals loadStylesheets, require */
-/* eslint-disable strict, import/unambiguous, global-require */
+/* eslint-disable strict, import/unambiguous, node/global-require */
 
 // import loadStylesheets from '../dist/index-es.js';
 'use strict';

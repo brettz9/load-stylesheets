@@ -1,47 +1,58 @@
+'use strict';
+
 module.exports = {
-  "extends": "ash-nazg/sauron-node",
-  "parserOptions": {
-    "sourceType": "module"
+  extends: 'ash-nazg/sauron-node',
+  parserOptions: {
+    sourceType: 'module'
   },
-  "settings": {
-    "polyfills": [
-      "Array.isArray",
-      "document.head",
-      "document.querySelectorAll",
-      "Promise",
-      "window.getComputedStyle"
+  settings: {
+    polyfills: [
+      'Array.isArray',
+      'document.head',
+      'document.querySelectorAll',
+      'Promise',
+      'window.getComputedStyle'
     ],
-    "coverage": true
+    coverage: true
   },
-  "env": {
-    "node": false,
-    "browser": true
+  env: {
+    node: false,
+    browser: true
   },
-  "overrides": [
+  overrides: [
     {
-      files: ["**/*.md"],
+      files: '.eslintrc.js',
+      extends: ['plugin:node/recommended-script'],
+      rules: {
+        'import/no-commonjs': 0
+      }
+    },
+    {
+      files: ['**/*.md'],
       settings: {
         polyfills: [
-          "document.body"
+          'document.body'
         ]
       },
       rules: {
-        "eol-last": ["off"],
-        "no-console": ["off"],
-        "no-undef": ["off"],
-        "padded-blocks": ["off"],
-        "import/unambiguous": ["off"],
-        "import/no-unresolved": ["off"],
-        "node/no-missing-import": ["off"],
-        "no-multi-spaces": "off",
-        "no-unused-vars": ["error", {varsIgnorePattern: "^(loadStylesheets|stylesheetElements|widget)$"}],
+        'eol-last': ['off'],
+        'no-console': ['off'],
+        'no-undef': ['off'],
+        'padded-blocks': ['off'],
+        'import/unambiguous': ['off'],
+        'import/no-unresolved': ['off'],
+        'node/no-missing-import': ['off'],
+        'no-multi-spaces': 'off',
+        'no-unused-vars': ['error', {
+          varsIgnorePattern: '^(loadStylesheets|stylesheetElements|widget)$'
+        }],
         // Disable until may fix https://github.com/gajus/eslint-plugin-jsdoc/issues/211
-        "indent": "off"
+        indent: 'off'
       }
     }
   ],
-  "rules": {
+  rules: {
     // Todo: Reenable
-    "jsdoc/require-jsdoc": 0
+    'jsdoc/require-jsdoc': 0
   }
 };

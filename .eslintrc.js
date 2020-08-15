@@ -28,6 +28,17 @@ module.exports = {
       }
     },
     {
+      files: 'test/**',
+      extends: ['plugin:node/recommended-script'],
+      rules: {
+        'node/exports-style': 'off'
+      },
+      env: {
+        node: true,
+        mocha: true
+      }
+    },
+    {
       files: ['**/*.md'],
       settings: {
         polyfills: [

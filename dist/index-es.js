@@ -98,12 +98,12 @@ function loadStylesheets(stylesheets) {
       } else if (after) {
         after.after(link);
       } else {
-        // eslint-disable-next-line unicorn/prefer-node-append
+        // eslint-disable-next-line unicorn/prefer-node-append -- Compatibility
         document.head.appendChild(link);
       }
     }
 
-    var link = document.createElement('link'); // eslint-disable-next-line promise/avoid-new
+    var link = document.createElement('link'); // eslint-disable-next-line promise/avoid-new -- No native option
 
     return new Promise(function (resolve, reject) {
       var rej = reject;

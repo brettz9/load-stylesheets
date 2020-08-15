@@ -23,14 +23,14 @@ export default function loadStylesheets (stylesheets, {
       } else if (after) {
         after.after(link);
       } else {
-        // eslint-disable-next-line unicorn/prefer-node-append
+        // eslint-disable-next-line unicorn/prefer-node-append -- Compatibility
         document.head.appendChild(link);
       }
     }
 
     const link = document.createElement('link');
 
-    // eslint-disable-next-line promise/avoid-new
+    // eslint-disable-next-line promise/avoid-new -- No native option
     return new Promise((resolve, reject) => {
       let rej = reject;
       if (acceptErrors) {

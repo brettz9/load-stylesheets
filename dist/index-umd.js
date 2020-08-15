@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.loadStylesheets = factory());
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.loadStylesheets = factory());
 }(this, (function () { 'use strict';
 
   function _slicedToArray(arr, i) {
@@ -104,12 +104,12 @@
         } else if (after) {
           after.after(link);
         } else {
-          // eslint-disable-next-line unicorn/prefer-node-append
+          // eslint-disable-next-line unicorn/prefer-node-append -- Compatibility
           document.head.appendChild(link);
         }
       }
 
-      var link = document.createElement('link'); // eslint-disable-next-line promise/avoid-new
+      var link = document.createElement('link'); // eslint-disable-next-line promise/avoid-new -- No native option
 
       return new Promise(function (resolve, reject) {
         var rej = reject;

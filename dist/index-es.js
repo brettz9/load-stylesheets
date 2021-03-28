@@ -98,7 +98,6 @@ function loadStylesheets(stylesheets) {
       } else if (after) {
         after.after(link);
       } else {
-        // eslint-disable-next-line unicorn/prefer-node-append -- Compatibility
         document.head.appendChild(link);
       }
     }
@@ -141,7 +140,8 @@ function loadStylesheets(stylesheets) {
         cnv.width = 16;
         cnv.height = 16;
         var context = cnv.getContext('2d');
-        var img = document.createElement('img');
+        var img = document.createElement('img'); // eslint-disable-next-line promise/prefer-await-to-callbacks -- No API
+
         img.addEventListener('error', function (error) {
           reject(error);
         });
@@ -158,7 +158,8 @@ function loadStylesheets(stylesheets) {
       link.rel = 'stylesheet';
       link.type = 'text/css';
       link.href = stylesheetURL;
-      addLink();
+      addLink(); // eslint-disable-next-line promise/prefer-await-to-callbacks -- No API
+
       link.addEventListener('error', function (error) {
         rej(error);
       });

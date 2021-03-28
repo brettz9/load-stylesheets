@@ -1,7 +1,15 @@
 # load-stylesheets
 
-## ?
+## 0.10.0
 
+### User-facing
+
+- npm: Remove `core-js-bundle` peerDep.
+- npm: Ignore more hidden files
+
+### Dev-facing
+
+- Dev security (npm): switch to server (http-server) without vulnerabilities
 - Build: Update per latest devDeps.
 - Build: Use "json" extension for RC
 - Linting (ESLint): Apply to any HTML files
@@ -9,7 +17,9 @@
 - Maintenance: Add `.editorconfig`
 - npm: Update `rollup-plugin-babel` to `@rollup/plugin-babel`
     and make explicit `babelHelpers` value of `bundled`
-- npm: update peerDep/devDeps
+- npm: Switch to pnpm
+- npm: Separate `open` script
+- npm: Update devDeps. including peerDeps for latest ash-nazg
 
 ## 0.9.0
 

@@ -2,18 +2,14 @@
 // import loadStylesheets from '../dist/index-es.js';
 'use strict';
 
-var chai; // eslint-disable-line no-var -- Browser global polyglot
 (function () {
 if (typeof exports !== 'undefined') {
   /* eslint-disable node/global-require -- Needed conditionally for Node */
   require('core-js-bundle');
-  chai = require('chai');
   /* eslint-enable node/global-require -- Needed conditionally for Node */
 }
 
 mocha.setup('bdd');
-
-const {assert, expect} = chai;
 
 /**
  * @returns {void}

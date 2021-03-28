@@ -1,10 +1,7 @@
 'use strict';
 
 module.exports = {
-  extends: 'ash-nazg/sauron-node',
-  parserOptions: {
-    sourceType: 'module'
-  },
+  extends: 'ash-nazg/sauron-node-overrides',
   settings: {
     polyfills: [
       'Array.isArray',
@@ -21,13 +18,6 @@ module.exports = {
   },
   overrides: [
     {
-      files: '.eslintrc.js',
-      extends: ['plugin:node/recommended-script'],
-      rules: {
-        'import/no-commonjs': 0
-      }
-    },
-    {
       files: 'test/**',
       extends: ['plugin:node/recommended-script'],
       rules: {
@@ -39,7 +29,7 @@ module.exports = {
       }
     },
     {
-      files: ['**/*.md'],
+      files: ['**/*.md/*.js'],
       settings: {
         polyfills: [
           'document.body'

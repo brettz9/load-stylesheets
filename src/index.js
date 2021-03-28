@@ -23,7 +23,6 @@ export default function loadStylesheets (stylesheets, {
       } else if (after) {
         after.after(link);
       } else {
-        // eslint-disable-next-line unicorn/prefer-node-append -- Compatibility
         document.head.appendChild(link);
       }
     }
@@ -63,6 +62,7 @@ export default function loadStylesheets (stylesheets, {
         cnv.height = 16;
         const context = cnv.getContext('2d');
         const img = document.createElement('img');
+        // eslint-disable-next-line promise/prefer-await-to-callbacks -- No API
         img.addEventListener('error', (error) => {
           reject(error);
         });
@@ -81,6 +81,7 @@ export default function loadStylesheets (stylesheets, {
       link.type = 'text/css';
       link.href = stylesheetURL;
       addLink();
+      // eslint-disable-next-line promise/prefer-await-to-callbacks -- No API
       link.addEventListener('error', (error) => {
         rej(error);
       });

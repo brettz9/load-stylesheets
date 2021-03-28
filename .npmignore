@@ -2,9 +2,11 @@ test
 
 .cache
 .mocha-puppeteer
-.babelrc
+.babelrc.json
 .eslintignore
-.eslintrc
+.eslintrc.js
 .remarkrc
+lgtm.yml
+pnpm-lock.yaml
 
 rollup.config.js

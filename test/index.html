@@ -13,7 +13,10 @@
 
     <script src="../node_modules/mocha/mocha.js"></script>
     <script src="../node_modules/chai/chai.js"></script>
-
+    <script>
+      window.expect = chai.expect;
+      window.assert = chai.assert;
+    </script>
   </head>
   <body>
     <div id="mocha"></div>

@@ -72,7 +72,7 @@ import loadStylesheets from './node_modules/load-stylesheets/dist/index-es.js';
             avoided and the favicon promise will resolve immediately as the
             `<link>` is added to the page regardless of whether it has loaded
             or not.
-        - *canvas* - This option is used if `image` is set to `true`
+        - *canvas* - This boolean option is used if `image` is set to `true`
             (default: false). This option will determine whether the image that
             is loaded is converted into a canvas and loaded as a `data:` URL.
             If `false`, the image loading will merely serve to detect the point
@@ -80,6 +80,11 @@ import loadStylesheets from './node_modules/load-stylesheets/dist/index-es.js';
             the favicon image file URL will be used as the `<link>` `href`
             (again, hopefully with the image just cached) rather than any
             kind of `data:` URL.
+        - *acceptErrors* - This option may be set to a boolean or to a function
+            which will be passed an object with the following keys:
+            `error`, `stylesheetURL`, `options`, `resolve`, `reject`. The
+            option is an alternative to rejecting upon errors (the boolean
+            will just automatically resolve upon errors).
 
 ## Example (basic)
 

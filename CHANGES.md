@@ -1,5 +1,11 @@
 # load-stylesheets
 
+## 0.12.0
+
+### User-facing
+
+- feat: TS types
+
 ## 0.11.0
 
 ### User-facing

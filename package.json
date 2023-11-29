@@ -1,6 +1,6 @@
 {
   "name": "load-stylesheets",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Asynchronously load link-tag stylesheets with promise result indicating load completion",
   "main": "./dist/index-umd.cjs",
   "type": "module",
@@ -9,6 +9,7 @@
     "require": "./dist/index-umd.cjs"
   },
   "scripts": {
+    "tsc": "tsc",
     "open": "open-cli http://localhost:8090/test/index.html && npm run start",
     "rollup": "rollup -c",
     "eslint": "eslint --ext=js,md,html .",

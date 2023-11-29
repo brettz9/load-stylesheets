@@ -1,3 +1,21 @@
+/**
+ * @param {string[]} stylesheets
+ * @param {{
+ *   before?: HTMLElement,
+ *   after?: HTMLElement,
+ *   favicon?: boolean,
+ *   image?: boolean,
+ *   canvas?: boolean,
+ *   acceptErrors?: boolean|((info: {
+ *     error: ErrorEvent,
+ *     stylesheetURL: string,
+ *     options: {},
+ *     resolve: (value: any) => void,
+ *     reject: (reason?: any) => void
+ *   }) => (reason?: any) => void)
+ * }} cfg
+ * @returns {Promise<HTMLLinkElement[]>}
+ */
 export default function loadStylesheets (stylesheets, {
   before: beforeDefault, after: afterDefault, favicon: faviconDefault,
   canvas: canvasDefault, image: imageDefault = true,
@@ -5,10 +23,30 @@ export default function loadStylesheets (stylesheets, {
 } = {}) {
   stylesheets = Array.isArray(stylesheets) ? stylesheets : [stylesheets];
 
-  function setupLink (stylesheetURL) {
+  /**
+   * @typedef {{
+   *   before?: HTMLElement,
+   *   after?: HTMLElement,
+   *   favicon?: boolean,
+   *   image?: boolean,
+   *   canvas?: boolean,
+   * }} Options
+   */
+
+  /**
+   * @param {string|[stylesheetURL: string, options: Options]} stylesheetURLInfo
+   * @returns {Promise<HTMLLinkElement>}
+   */
+  function setupLink (stylesheetURLInfo) {
+    /** @type {Options} */
     let options = {};
-    if (Array.isArray(stylesheetURL)) {
-      ([stylesheetURL, options = {}] = stylesheetURL);
+
+    /** @type {string} */
+    let stylesheetURL;
+    if (Array.isArray(stylesheetURLInfo)) {
+      ([stylesheetURL, options = {}] = stylesheetURLInfo);
+    } else {
+      stylesheetURL = stylesheetURLInfo;
     }
     let {favicon = faviconDefault} = options;
     const {
@@ -67,6 +105,9 @@ export default function loadStylesheets (stylesheets, {
           reject(error);
         });
         img.addEventListener('load', () => {
+          if (!context) {
+            throw new Error('Canvas context could not be found');
+          }
           context.drawImage(img, 0, 0);
           link.href = canvas
             ? cnv.toDataURL('image/x-icon')

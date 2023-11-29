@@ -34,7 +34,7 @@ or:
 ### Browser install
 
 ```html
-<script src="node_modules/load-stylesheets/dist/index-umd.js"></script>
+<script src="node_modules/load-stylesheets/dist/index-umd.cjs"></script>
 ```
 
 The global will be `loadStylesheets`.
@@ -86,24 +86,20 @@ import loadStylesheets from './node_modules/load-stylesheets/dist/index-es.js';
 ## Example (basic)
 
 ```js
-(async () => {
 const stylesheetElements = await loadStylesheets([
-    'path/to/styles.css',
-    'a/different/path/to/styles.css'
+  'path/to/styles.css',
+  'a/different/path/to/styles.css'
 ]);
-})();
 ```
 
 ## Example (with config)
 
 ```js
-(async () => {
 const stylesheetElements = await loadStylesheets([
-    'path/to/styles.css',
-    ['path/to/favicon.png', {favicon: true, before: document.head}],
-    'a/different/path/to/styles.css'
+  'path/to/styles.css',
+  ['path/to/favicon.png', {favicon: true, before: document.head}],
+  'a/different/path/to/styles.css'
 ], {before: document.body.lastElementChild});
-})();
 ```
 
 ## Demonstration
@@ -118,15 +114,11 @@ import Widget from './widget.js';
 // We even do the title in JavaScript
 document.title = 'Internationalizable title';
 
-(async () => {
-
 const widget = await new Widget({
-    stylesheets: ['@builtin', '/path/to/custom/styles.css']
+  stylesheets: ['@builtin', '/path/to/custom/styles.css']
 }).init();
 
 // the stylesheets were loaded and then the widget added
-
-})();
 ```
 
 ```js
@@ -134,24 +126,24 @@ const widget = await new Widget({
 import loadStylesheets from 'load-stylesheets';
 
 class Widget {
-    constructor ({stylesheets}) {
-        // We'll allow control in one place of whether the user wants the
-        //   built-in stylesheets for this widget or not
-        this.stylesheets = stylesheets.map((s) => {
-            return s === '@builtin' ? '/path/to/widget.css' : s;
-        });
-    }
-    async init () {
-        this._stylesheetElements = await loadStylesheets(this.stylesheets);
+  constructor ({stylesheets}) {
+    // We'll allow control in one place of whether the user wants the
+    //   built-in stylesheets for this widget or not
+    this.stylesheets = stylesheets.map((s) => {
+      return s === '@builtin' ? '/path/to/widget.css' : s;
+    });
+  }
+  async init () {
+    this._stylesheetElements = await loadStylesheets(this.stylesheets);
 
-        // The stylesheets have now been loaded, so your widget will be
-        //      added without "jankiness" and without need for your users to
-        //      non-modularly add stylesheets to their main HTML
+    // The stylesheets have now been loaded, so your widget will be
+    //      added without "jankiness" and without need for your users to
+    //      non-modularly add stylesheets to their main HTML
 
-        // Begin widget-building code here
+    // Begin widget-building code here
 
-        return this; // Return `Widget` instance for convenience
-    }
+    return this; // Return `Widget` instance for convenience
+  }
 }
 export default Widget;
 ```
@@ -162,12 +154,12 @@ be as clean as:
 ```html
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <script type="module" src="dist/main.js"></script>
-    </body>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script type="module" src="dist/main.js"></script>
+  </body>
 </html>
 ```
 

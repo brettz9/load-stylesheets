@@ -2,6 +2,9 @@
 
 module.exports = {
   extends: 'ash-nazg/sauron-node-overrides',
+  parserOptions: {
+    ecmaVersion: 2022
+  },
   settings: {
     polyfills: [
       'Array.isArray',
@@ -19,10 +22,6 @@ module.exports = {
   overrides: [
     {
       files: 'test/**',
-      extends: ['plugin:node/recommended-script'],
-      rules: {
-        'node/exports-style': 'off'
-      },
       env: {
         node: true,
         mocha: true

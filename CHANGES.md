@@ -1,5 +1,15 @@
 # load-stylesheets
 
+## 0.11.0
+
+### User-facing
+
+- feat: switch to native ESM (and changing paths to ".cjs" extension)
+
+### Dev-facing
+
+- chore: update devDeps.
+
 ## 0.10.0
 
 ### User-facing

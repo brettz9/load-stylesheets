@@ -23,7 +23,7 @@ export default function loadStylesheets (stylesheets, {
       } else if (after) {
         after.after(link);
       } else {
-        document.head.appendChild(link);
+        document.head.append(link);
       }
     }
 

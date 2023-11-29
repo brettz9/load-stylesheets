@@ -8,18 +8,19 @@
     <!-- Still want to provide no-op to suppress warnings until we insert our own -->
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 
-    <script src="../node_modules/core-js-bundle/minified.js"></script>
-    <script src="../dist/index-umd.js"></script>
-
     <script src="../node_modules/mocha/mocha.js"></script>
     <script src="../node_modules/chai/chai.js"></script>
     <script>
+      /* eslint-disable import/unambiguous -- Ok */
       window.expect = chai.expect;
       window.assert = chai.assert;
+      mocha.setup('bdd');
     </script>
   </head>
   <body>
     <div id="mocha"></div>
-    <script src="tests.js"></script>
+    <script type="module">
+    import './tests.js';
+    </script>
   </body>
 </html>

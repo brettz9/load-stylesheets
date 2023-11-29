@@ -1,5 +1,5 @@
-import babel from '@rollup/plugin-babel';
-import {terser} from 'rollup-plugin-terser';
+import {babel} from '@rollup/plugin-babel';
+import terser from '@rollup/plugin-terser';
 
 /**
  * @external RollupConfig
@@ -8,10 +8,10 @@ import {terser} from 'rollup-plugin-terser';
  */
 
 /**
- * @param {PlainObject} [config={}]
+ * @param {PlainObject} [config]
  * @param {boolean} config.minifying
- * @param {string} [config.format="umd"]
- * @returns {external:RollupConfig}
+ * @param {string} [config.format]
+ * @returns {RollupConfig}
  */
 function getRollupObject ({minifying, format = 'umd'} = {}) {
   const nonMinified = {
@@ -19,7 +19,9 @@ function getRollupObject ({minifying, format = 'umd'} = {}) {
     output: {
       format,
       sourcemap: minifying,
-      file: `dist/index-${format}${minifying ? '.min' : ''}.js`,
+      file: `dist/index-${format}${minifying ? '.min' : ''}.${
+        format === 'umd' ? 'c' : ''
+      }js`,
       name: 'loadStylesheets'
     },
     plugins: [

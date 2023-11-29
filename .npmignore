@@ -4,8 +4,9 @@ test
 .mocha-puppeteer
 .babelrc.json
 .eslintignore
-.eslintrc.js
-.remarkrc
+.eslintrc.cjs
+.editorconfig
+tsconfig.json
 lgtm.yml
 pnpm-lock.yaml
 

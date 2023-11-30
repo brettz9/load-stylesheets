@@ -1,10 +1,11 @@
 {
   "name": "load-stylesheets",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "description": "Asynchronously load link-tag stylesheets with promise result indicating load completion",
   "main": "./dist/index-umd.cjs",
   "type": "module",
   "exports": {
+    "types": "./dist/index.d.ts",
     "import": "./src/index.js",
     "require": "./dist/index-umd.cjs"
   },

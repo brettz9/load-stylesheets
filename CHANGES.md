@@ -1,5 +1,9 @@
 # load-stylesheets
 
+## 0.12.1
+
+- fix: TS export
+
 ## 0.12.0
 
 ### User-facing

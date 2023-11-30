@@ -1,5 +1,5 @@
 /**
- * @param {string[]} stylesheets
+ * @param {string|string[]} stylesheets
  * @param {{
  *   before?: HTMLElement,
  *   after?: HTMLElement,

@@ -1,5 +1,9 @@
 # load-stylesheets
 
+## 0.12.2
+
+- fix: TS fix
+
 ## 0.12.1
 
 - fix: TS export

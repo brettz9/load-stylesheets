@@ -1,5 +1,9 @@
 # load-stylesheets
 
+## 0.12.3
+
+- fix: TS fix
+
 ## 0.12.2
 
 - fix: TS fix

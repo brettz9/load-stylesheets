@@ -1,5 +1,5 @@
 /**
- * @param {string[]} stylesheets
+ * @param {string|string[]} stylesheets
  * @param {{
  *   before?: HTMLElement,
  *   after?: HTMLElement,
@@ -16,7 +16,7 @@
  * }} cfg
  * @returns {Promise<HTMLLinkElement[]>}
  */
-export default function loadStylesheets(stylesheets: string[], { before: beforeDefault, after: afterDefault, favicon: faviconDefault, canvas: canvasDefault, image: imageDefault, acceptErrors }?: {
+export default function loadStylesheets(stylesheets: string | string[], { before: beforeDefault, after: afterDefault, favicon: faviconDefault, canvas: canvasDefault, image: imageDefault, acceptErrors }?: {
     before?: HTMLElement | undefined;
     after?: HTMLElement | undefined;
     favicon?: boolean | undefined;

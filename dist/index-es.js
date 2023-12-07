@@ -48,6 +48,24 @@ function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
+/**
+ * @param {string|string[]} stylesheets
+ * @param {{
+ *   before?: HTMLElement,
+ *   after?: HTMLElement,
+ *   favicon?: boolean,
+ *   image?: boolean,
+ *   canvas?: boolean,
+ *   acceptErrors?: boolean|((info: {
+ *     error: ErrorEvent,
+ *     stylesheetURL: string,
+ *     options: {},
+ *     resolve: (value: any) => void,
+ *     reject: (reason?: any) => void
+ *   }) => (reason?: any) => void)
+ * }} cfg
+ * @returns {Promise<HTMLLinkElement[]>}
+ */
 function loadStylesheets(stylesheets) {
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
     beforeDefault = _ref.before,
@@ -58,14 +76,34 @@ function loadStylesheets(stylesheets) {
     imageDefault = _ref$image === void 0 ? true : _ref$image,
     acceptErrors = _ref.acceptErrors;
   stylesheets = Array.isArray(stylesheets) ? stylesheets : [stylesheets];
-  function setupLink(stylesheetURL) {
+
+  /**
+   * @typedef {{
+   *   before?: HTMLElement,
+   *   after?: HTMLElement,
+   *   favicon?: boolean,
+   *   image?: boolean,
+   *   canvas?: boolean,
+   * }} Options
+   */
+
+  /**
+   * @param {string|[stylesheetURL: string, options: Options]} stylesheetURLInfo
+   * @returns {Promise<HTMLLinkElement>}
+   */
+  function setupLink(stylesheetURLInfo) {
+    /** @type {Options} */
     var options = {};
-    if (Array.isArray(stylesheetURL)) {
-      var _stylesheetURL = stylesheetURL;
-      var _stylesheetURL2 = _slicedToArray(_stylesheetURL, 2);
-      stylesheetURL = _stylesheetURL2[0];
-      var _stylesheetURL2$ = _stylesheetURL2[1];
-      options = _stylesheetURL2$ === void 0 ? {} : _stylesheetURL2$;
+
+    /** @type {string} */
+    var stylesheetURL;
+    if (Array.isArray(stylesheetURLInfo)) {
+      var _stylesheetURLInfo = _slicedToArray(stylesheetURLInfo, 2);
+      stylesheetURL = _stylesheetURLInfo[0];
+      var _stylesheetURLInfo$ = _stylesheetURLInfo[1];
+      options = _stylesheetURLInfo$ === void 0 ? {} : _stylesheetURLInfo$;
+    } else {
+      stylesheetURL = stylesheetURLInfo;
     }
     var _options = options,
       _options$favicon = _options.favicon,
@@ -128,6 +166,9 @@ function loadStylesheets(stylesheets) {
           reject(error);
         });
         img.addEventListener('load', function () {
+          if (!context) {
+            throw new Error('Canvas context could not be found');
+          }
           context.drawImage(img, 0, 0);
           link.href = canvas ? cnv.toDataURL('image/x-icon') : stylesheetURL;
           addLink();

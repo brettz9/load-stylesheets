@@ -1,5 +1,9 @@
 # load-stylesheets
 
+## 0.12.4
+
+- fix: help TS find declaration file when from `node_modules` paths
+
 ## 0.12.3
 
 - fix: TS fix

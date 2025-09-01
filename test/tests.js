@@ -1,3 +1,6 @@
+/* globals assert, expect -- Browser UMD */
+/* eslint-disable chai-expect/missing-assertion,
+  chai-expect/no-inner-literal -- Test counts */
 import loadStylesheets from '../dist/index-es.js';
 
 /**
@@ -33,7 +36,7 @@ describe('load-stylesheets', function () {
       assert.strictEqual(s1.getAttribute('href'), stylesheet1);
       assert.strictEqual(s2.getAttribute('href'), stylesheet2);
 
-      // const computedStyles = window.getComputedStyle(testElement);
+      // const computedStyles = globalThis.getComputedStyle(testElement);
       // assert.strictEqual(computedStyles.color, blueRGB);
       // assert.strictEqual(computedStyles.backgroundColor, yellowRGB);
     } catch (err) {
@@ -58,7 +61,7 @@ describe('load-stylesheets', function () {
       const [s1] = await loadStylesheets(stylesheet1);
       assert.strictEqual(s1.nodeName.toLowerCase(), 'link');
       assert.strictEqual(s1.getAttribute('href'), stylesheet1);
-      // const computedStyles = window.getComputedStyle(testElement);
+      // const computedStyles = globalThis.getComputedStyle(testElement);
       // assert.strictEqual(computedStyles.color, blueRGB);
       // assert.strictEqual(computedStyles.backgroundColor, noRGB);
     } catch (err) {
@@ -173,7 +176,7 @@ describe('load-stylesheets', function () {
       assert.strictEqual(s1.nodeName.toLowerCase(), 'link');
       assert.strictEqual(s1.getAttribute('href'), stylesheet1);
 
-      // const computedStyles = window.getComputedStyle(testElement);
+      // const computedStyles = globalThis.getComputedStyle(testElement);
       // assert.strictEqual(computedStyles.color, blueRGB);
       // assert.strictEqual(computedStyles.backgroundColor, noRGB);
 

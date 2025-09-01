@@ -1,5 +1,10 @@
 # load-stylesheets
 
+## 0.13.0 (unreleased)
+
+- feat: support last 2 versions in browserslist
+- chore: update devDeps.
+
 ## 0.12.5
 
 - fix: help TS find declaration file when from `node_modules` paths

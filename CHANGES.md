@@ -1,7 +1,8 @@
 # load-stylesheets
 
-## 0.13.0 (unreleased)
+## 0.13.0
 
+- feat(typescript): export `Options` and `Stylesheets`
 - feat: support last 2 versions in browserslist
 - chore: update devDeps.
 
